@@ -4,26 +4,9 @@
 
 ## Experiments
 
-| **Sl. No.** | **Experiment**                                              |
-|:-----------:|:-----------------------------------------------------------:|
-| 1           | CPU Scheduling Algorithms                                   |
-| 1(a)        | FCFS                                                        |
-| 1(b)        | SJF                                                         |
-| 1(c)        | Priority Scheduling                                         |
-| 1(d)        | Round Robin                                                 |
-| 2           | Bankers Algorithm                                           |
-| 3           | FIFO Page Replacement Algorithm                             |
-| 4           | FCFS Disk Scheduling Algorithm                              |
-| 5           | Simple Decimal Arithmetic Operations using 8086 Trainer kit |
-| 6           | BIT Manipulation Operations using 8086 Trainer kit          |
-| 7           | Code Conversion between BCD & Hexadecimal                   |
-| 8           | Interfacing with Stepper motor                              |
-| 9           | Interfacing with 8279                                       |
-| 10          | Simple Arithmetic operations using 8051                     |
-| 11          | Sorting and Searching using MASM                            |
-| 12          | Arithmetic operations using MASM                            |
-| 13          | Pass one of two pass assembler                              |
-| 14          | Pass two of two pass assembler                              |
-| 15          | Absolute Loader                                             |
-| 16          | Relocating Loader                                           |
-| 17          | Single Pass assembler                                       |
+### System Software
+<img width="778" height="672" alt="image" src="https://github.com/user-attachments/assets/1c270b8e-1611-4f11-9607-fe14f2869d98" />
+
+
+### Microprocessors & Microcontrollers
+<img width="778" height="775" alt="image" src="https://github.com/user-attachments/assets/20da8e3f-4d08-4783-8fae-a3c9e72201fe" />
