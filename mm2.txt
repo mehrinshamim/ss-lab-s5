@@ -1,0 +1,101 @@
+;-----------------------------------------------
+; Program: Check if the given string is Palindrome
+; Microprocessor: 8086
+;-----------------------------------------------
+
+DATA SEGMENT
+    MSG1 DB 10,13,'ENTER THE STRING: $'        ; Message to prompt user input
+    MSG2 DB 10,13,'STRING IS PALINDROME$'      ; Message for palindrome result
+    MSG3 DB 10,13,'STRING IS NOT PALINDROME$'  ; Message for non-palindrome result
+    STR1 DB 50 DUP(0)                          ; Reserve 50 bytes for user input
+DATA ENDS
+
+
+CODE SEGMENT
+ASSUME CS:CODE, DS:DATA
+
+START:
+    MOV AX, DATA     ; Load the address of DATA segment into AX
+    MOV DS, AX       ; Initialize DS with address of DATA (important for data access)
+
+    LEA DX, MSG1     ; Load address of message 1 into DX
+    MOV AH, 09H      ; DOS interrupt function 09H: display string
+    INT 21H          ; Display “ENTER THE STRING:”
+
+    LEA SI, STR1     ; SI points to start of STR1 (to store input)
+    LEA DI, STR1     ; DI also points to start (used for writing input)
+
+    MOV AH, 01H      ; DOS interrupt function 01H: read single character
+NEXT:
+    INT 21H          ; Wait for user input from keyboard (character in AL)
+    CMP AL, 0DH      ; Compare with carriage return (Enter key)
+    JE TERMINATE     ; If Enter pressed → go terminate input
+
+    MOV [DI], AL     ; Store typed character into memory at address DI
+    INC DI           ; Move DI to next memory position
+    JMP NEXT         ; Repeat to read next character
+
+TERMINATE:
+    MOV AL, '$'      ; Append '$' at the end of string (end marker)
+    MOV [DI], AL     
+
+;-----------------------------------------------
+; Now start checking palindrome
+;-----------------------------------------------
+
+DOTHIS:
+    DEC DI           ; Move DI one step back (to point to last character before '$')
+    MOV AL, [SI]     ; Get character from start (pointed by SI)
+    
+    CMP [DI], AL     ; Compare start & end characters
+    JNE NOTPALINDROME ; If not equal, jump to NOTPALINDROME
+
+    INC SI           ; Move SI forward (left → right)
+    CMP SI, DI       ; Check if pointers have crossed (middle reached)
+    JL DOTHIS        ; If SI < DI, continue loop
+
+;-----------------------------------------------
+; If loop completes, string is palindrome
+;-----------------------------------------------
+
+PALINDROME:
+    MOV AH, 09H
+    LEA DX, MSG2     ; Load palindrome message
+    INT 21H          ; Display “STRING IS PALINDROME”
+    JMP XX           ; Jump to exit
+
+;-----------------------------------------------
+; If mismatch found → Not palindrome
+;-----------------------------------------------
+
+NOTPALINDROME:
+    MOV AH, 09H
+    LEA DX, MSG3     ; Load not-palindrome message
+    INT 21H          ; Display “STRING IS NOT PALINDROME”
+
+;-----------------------------------------------
+; Exit program
+;-----------------------------------------------
+
+XX:
+    MOV AH, 4CH      ; DOS interrupt 4Ch → terminate program
+    INT 21H
+
+CODE ENDS
+END START
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SS
+
